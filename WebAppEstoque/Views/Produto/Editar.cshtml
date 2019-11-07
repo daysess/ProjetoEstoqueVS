@@ -1,0 +1,60 @@
+﻿@model ProjetoEstoque.Dominio.Produto
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<h2>Alterar dados do produto</h2>
+<br />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <br />
+    @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+    @*@if (ViewBag.msg != null)
+        {
+            <div class="alert <%= @ViewBag.tipoMsg %> alert-dismissible fade show" role="alert">
+                @ViewBag.msg
+            </div>
+        }*@
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label>Id do produto</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IdProduto, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+                @Html.ValidationMessageFor(model => model.IdProduto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Nome do produto</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NmProduto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NmProduto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Descrição</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DsProduto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DsProduto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Alterar" class="btn btn-primary" />
+                @Html.ActionLink("Voltar", "ListarProdutos", null, htmlAttributes: new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval");
+}

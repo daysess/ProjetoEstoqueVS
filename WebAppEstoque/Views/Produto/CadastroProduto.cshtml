@@ -1,0 +1,52 @@
+﻿@model ProjetoEstoque.Dominio.Produto
+
+@{
+    ViewBag.Title = "CadastroProduto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<h2>Cadastro de Produto</h2>
+<br />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        <br />
+        @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+        @if (ViewBag.msg != null)
+        {
+            <div class="alert <%= @ViewBag.tipoMsg %> alert-dismissible fade show" role="alert">
+                @ViewBag.msg
+            </div>
+        }
+
+        <div class="form-group">
+            <label>Nome do produto</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NmProduto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NmProduto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Descrição</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DsProduto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DsProduto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Cadastrar" class="btn btn-primary" />
+                @Html.ActionLink("Voltar", "ListarProdutos", null, htmlAttributes: new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval");
+}

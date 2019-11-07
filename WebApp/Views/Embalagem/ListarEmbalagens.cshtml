@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ProjetoEstoque.Dominio.Embalagem>
+
+@{
+    ViewBag.Title = "ListarEmbalagens";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de Embalagens</h2>
+<br />
+
+@if (ViewBag.msg != null)
+{
+    <div class="alert <%= @ViewBag.tipoMsg %> alert-dismissible fade show" role="alert">
+        @ViewBag.msg
+    </div>
+}
+<br />
+<p>
+    @Html.ActionLink("Cadastrar", "CadastroEmbalagem")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <label>Id Embalagem</label>
+        </th>
+        <th>
+            <label>Nome de Embalagem</label>
+        </th>
+        <th>
+            <label>Qtd de Unidade</label>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdEmbalagem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NmEmbalagem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QtdUnidade)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { item.IdEmbalagem }) |
+                @Html.ActionLink("Excluir", "Excluir", new { item.IdEmbalagem })
+            </td>
+        </tr>
+    }
+
+</table>

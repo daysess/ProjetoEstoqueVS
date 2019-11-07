@@ -1,0 +1,140 @@
+﻿@model ProjetoEstoque.Dominio.Compra
+
+@{
+    ViewBag.Title = "Cadastrar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //$("#VlUnidadeCompra").inputmask("mask", { "mask": "999.999.990,00" }, { reverse: true });
+            $("#VlBaseLucro").inputmask("mask", { "mask": "###,99" }, { reverse: true });
+            $("#DtCompra").inputmask("mask", { "mask": "99/99/9999" });
+            $("#DtValidade").inputmask("mask", { "mask": "99/99/9999" });
+            $("#VlUnidadeCompra").inputmask('decimal', {
+                'alias': 'numeric',
+                'groupSeparator': ',',
+                'autoGroup': true,
+                'digits': 2,
+                'radixPoint': ".",
+                'digitsOptional': false,
+                'allowMinus': false,
+                'prefix': 'R$ ',
+                'placeholder': ''
+            }));
+
+
+
+
+        });
+    </script>
+}
+
+<h2>Cadastrar</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="form-horizontal">
+        @if (ViewBag.msg != null)
+        {
+            <div class="alert <%= @ViewBag.tipoMsg %> alert-dismissible fade show" role="alert">
+                @ViewBag.msg
+            </div>
+        }
+
+        @*<div class="alert alert-danger" role="alert">@ViewBag.Error</div>*@
+
+        <h4>Compra</h4>
+        <hr />
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <label>Produto</label>
+                    <div class="col-md-10">
+                        @Html.DropDownList("IdProduto", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IdProduto, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <label>Embalagem de compra</label>
+                    <div class="col-md-10">
+                        @Html.DropDownList("IdEmbalagemCompra", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IdEmbalagemCompra, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <label>Embalagem de estoque</label>
+                    <div class="col-md-10">
+                        @Html.DropDownList("IdEmbalagemEstoque", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IdEmbalagemEstoque, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <label>Qtd de unidade</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.QtdUnidadeCompra, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.QtdUnidadeCompra, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <label>Valor da compra (UN)</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.VlUnidadeCompra, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.VlUnidadeCompra, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <label>Total da compra</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.VlTotalCompra, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.VlTotalCompra, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <label> Base de lucro (%)</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.VlBaseLucro, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.VlBaseLucro, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <label>Data da compra</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DtCompra, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DtCompra, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <label>Data de validade</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DtValidade, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DtValidade, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Cadastrar" name="CadastroCompra" class="btn btn-primary" />
+                @Html.ActionLink("Voltar", "ListarCompras", null, htmlAttributes: new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </div>
+}
+

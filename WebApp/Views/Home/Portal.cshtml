@@ -1,0 +1,21 @@
+﻿@model ProjetoEstoque.Dominio.Usuario
+
+@{
+    ViewBag.Title = "Portal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Acesso ao Portal de estoque e vendas</h2>
+
+
+<fildset>
+    <legenda>Dados Usuario</legenda>
+    <div class="col-form-label">
+        @Html.DisplayNameFor(model => model.NmUsuario)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.NmUsuario)
+    </div>
+
+    <p> @Html.ActionLink("Voltar", "Index")</p>
+</fildset>

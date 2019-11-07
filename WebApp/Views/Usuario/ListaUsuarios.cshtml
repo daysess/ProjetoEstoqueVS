@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ProjetoEstoque.Dominio.Usuario>
+
+@{
+    ViewBag.Title = "ListaUsuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de Usuários</h2>
+<br />
+
+@if (ViewBag.msg != null)
+{
+    <div class="alert <%= @ViewBag.tipoMsg %> alert-dismissible fade show" role="alert">
+        @ViewBag.msg
+    </div>
+}
+<br />
+
+<p>
+    @Html.ActionLink("Novo Usuário", "PortalUsuario")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NmUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DtCadastro)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NmUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DtCadastro)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { idUsuario = item.IdUsuario }) |
+                @Html.ActionLink("Excluir", "Excluir", new { idUsuario = item.IdUsuario })
+            </td>
+        </tr>
+    }
+
+</table>

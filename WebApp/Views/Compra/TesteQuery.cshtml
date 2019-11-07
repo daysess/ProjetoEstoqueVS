@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "TesteQuery";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>TesteQuery</h2>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<hr />
+<p>Telefone: <input type="text" id="telefone" /></p>
+<p>CPF: <input type="text" id="cpf" /></p>
+<p>CEP: <input type="text" id="cep" /></p>
+<p>Nascimento: <input type="text" id="nascimento" /></p>
+<p>Preço (R$) : <input type="text" id="preco" /></p>
+<p>Valor (R$) : <input type="text" id="valor" /></p>
+<p>Informe o IP :  <input type="text" id="ip" /></p>
+<p>Money :  <input type="text" id="money" /></p>
+<p><input type="submit" value="Enviar" /></p>
+@section Scripts {
+    <script>
+        $(document).ready(function ()
+        {
+            $("#telefone").inputmask("mask", { "mask": "(99) 9999-99999" });
+            $("#cpf").inputmask("mask", { "mask": "999.999.999-99" }, {reverse:true});
+            $("#cep").inputmask("mask", { "mask": "99999-999" });
+            $("#nascimento").inputmask("mask", { "mask": "99/99/9999" });
+            $("#preco").inputmask("mask", { "mask": "999.999,99" }, { reverse: true });
+            $("#valor").inputmask("mask", { "mask": "#.##9,99" }, { reverse: true });
+            $("#ip").inputmask("mask", { "mask": "999.999.999.999" });
+            $("#money").inputmask('currency', {
+                "autoUnmask": true,
+                radixPoint: ",",
+                groupSeparator: ".",
+                allowMinus: false,
+                prefix: 'R$ ',
+                digits: 2,
+                digitsOptional: false,
+                rightAlign: true,
+                unmaskAsNumber: true
+            });
+        });
+            
+    </script>
+}
+

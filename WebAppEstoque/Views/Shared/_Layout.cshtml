@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Portal Estoque e Vendas</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/Content/Site.css" rel="stylesheet">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse col-lg-9" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    @Html.ActionLink("Início", "Portal", "Home", "Default", htmlAttributes: new { @Class = "nav-link" })
+                </li>
+                @*
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>*@
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownCadastro" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cadastro</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownCadastro">
+                        @Html.ActionLink("Usuário", "ListaUsuarios", "Usuario", "RouteUsuario", htmlAttributes: new { @Class = "dropdown-item" })
+                        @Html.ActionLink("Produto", "ListarProdutos", "Produto", "RouteProduto", htmlAttributes: new { @Class = "dropdown-item" })
+                        @Html.ActionLink("Embalagem", "ListarEmbalagens", "Embalagem", "RouteEmbalagem", htmlAttributes: new { @Class = "dropdown-item" })
+
+                        @*<a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>*@
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownModulos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Módulo Compra</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownCadastro">
+                        @Html.ActionLink("Nova Compra", "ListarCompras", "Compra", "RouteCompras", htmlAttributes: new { @Class = "dropdown-item" })
+                        @Html.ActionLink("Estoque", "EstoqueProduto", "EstoqueProduto", htmlAttributes: new { @Class = "dropdown-item" })
+
+                        @*<a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>*@
+                    </div>
+                </li>
+                <li class="nav-item active">
+                    @Html.ActionLink("Módulo Caixa", "Caixa", "Caixa", htmlAttributes: new { @Class = "nav-link" })
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-3">
+            <label><b>Usuário logado: </b></label>@TempData["NmUsuarioLogado"]
+        </div>
+    </nav>
+
+    <main role="main" class="container">
+
+        <div class="page-item container">
+            @RenderBody()
+        </div>
+
+    </main><!-- /.container -->
+    @*
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="/docs/4.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>*@
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/inputmask")
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
